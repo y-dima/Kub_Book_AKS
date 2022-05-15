@@ -49,7 +49,7 @@ jobs:
     needs: CI
     steps:
       - name: Git checkout
-        uses: actions/checout@v2
+        uses: actions/checkout@v2
         
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v1
