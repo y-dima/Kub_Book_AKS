@@ -58,3 +58,8 @@ jobs:
           resource-group: ${{ env.RG }}
           cluster-name: ${{ env.CLUSTER }}
           
+      - name: Helm upgrade
+        run: |
+          helm upgrade website Chapter15/website --install \
+            --set image.repository=$ACRNAME.azurecr.io/website/website \
+            --set image.tag=${{ github.run_number }}
