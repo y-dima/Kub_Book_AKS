@@ -8,7 +8,7 @@ on:
     branches: [ main ]
     paths:
     - Chapter15/**
-    - .github/workflows/pipeline.yaml
+    - .github/workflows/pipeline.yml
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
   # EEnv to set reusable variables
