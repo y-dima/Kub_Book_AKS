@@ -14,6 +14,8 @@ on:
   # EEnv to set reusable variables
 env:
   ACRNAME: dmyacr
+  RG: Kub-RG
+  CLUSTER: dmykub
 
 jobs:
   # this workflow contains a single job calleed "CI"
@@ -41,3 +43,18 @@ jobs:
           context: ./Chapter15
           push: true
           tags: ${{ env.ACRNAME }}.azurecr.io/website/website:${{ github.run_number }}
+
+  CD:
+    runs-on: ubuntu-latest
+    needs: CI
+    steps:
+      - name: Git checkout
+        uses: actions/checout@v2
+        
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ env.RG }}
+          cluster-name: ${{ env.CLUSTER }}
+          
