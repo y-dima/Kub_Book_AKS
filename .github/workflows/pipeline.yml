@@ -31,3 +31,6 @@ jobs:
         uses: Azure/login@v1.4.4
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: ACR login
+        run: az acr login -n $ACRNAME
